@@ -57,6 +57,7 @@ ul,li{
   cursor: pointer;
 }
 
+
 .todo-item-num,.todo-item-txt,.todo-item-done {
   border-right: 1px solid rgba(47, 50, 51, 0.28);
 }
@@ -65,4 +66,44 @@ ul,li{
   text-align: center;
   padding: 0;
   cursor: pointer;
+}
+
+
+/******************************************侧边栏********************************************************/
+.sidebar {
+  position: absolute;
+  width: 2rem;
+  height: 100%;
+  background: rgb(236, 245, 239);
+}
+
+.sidebar-button-login {
+  margin-top: 1rem;
+}
+
+.sidebar-button {
+  margin-left: 0.4rem;
+}
+
+.menu-item {
+  width: 100%;
+  text-align: center;
+  padding: 0.2rem;
+}
+
+.sidebar-button-menu {
+  color: rgb(116, 121, 118);
+  font-size: 0.18rem;
+}
+
+.sidebar-button-menu div {
+  cursor: pointer;
+}
+
+.sidebar-button-menu div:hover {
+  background-color: rgb(210, 222, 213);
+}
+
+.sidebar-button-menu div:first-child {
+  margin-top: 1rem;
 }

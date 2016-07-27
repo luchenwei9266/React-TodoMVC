@@ -1,6 +1,7 @@
 var React = require('react');
 var TodoForm = require('./todoForm.js');
 var TodoList = require('./todoList.js');
+var Siderbar = require('./sidebar');
 
 require("!style!css!./../../node_modules/bootstrap/dist/css/bootstrap.min.css");
 require("!style!css!./../../node_modules/bootstrap/dist/css/bootstrap-theme.min.css");
@@ -31,18 +32,21 @@ module.exports = React.createClass({
     },
     render: function () {
         return (
-          <div className="content">
+          <div>
 
-            <div className="todo-head">
-              <p className="todo-title">TODO</p>
-              <TodoForm todoList = {this.state.todoList}
-                        submitNewTodo = {this.submitNewTodo} />
+            <Siderbar />
+
+            <div className="content">
+              <div className="todo-head">
+                <p className="todo-title">TODO</p>
+                <TodoForm todoList = {this.state.todoList}
+                          submitNewTodo = {this.submitNewTodo} />
+              </div>
+              <div className="todo-foot">
+                <TodoList todoList={this.state.todoList}
+                          delTodo = {this.delTodo} />
+               </div>
             </div>
-
-            <div className="todo-foot">
-              <TodoList todoList={this.state.todoList}
-                        delTodo = {this.delTodo} />
-             </div>
 
           </div>
         );
