@@ -4,7 +4,7 @@ let ReactDOM = require('react-dom');
 // let AppComponent = require('./components/router/leanTouter.js');
 
 // let AppComponent = require('./components/mainApp.js');
-let AppComponent = require('./components/login/login.js');
+let AppComponent = require('./components/login/user.js');
 
 require("!style!css!./../node_modules/bootstrap/dist/css/bootstrap.min.css");
 require("!style!css!./../node_modules/bootstrap/dist/css/bootstrap-theme.min.css");
