@@ -3,9 +3,6 @@ var TodoForm = require('./todoForm.js');
 var TodoList = require('./todoList.js');
 var Siderbar = require('./sidebar');
 
-require("!style!css!./../../node_modules/bootstrap/dist/css/bootstrap.min.css");
-require("!style!css!./../../node_modules/bootstrap/dist/css/bootstrap-theme.min.css");
-require("!style!css!../css/style.css");
 
 module.exports = React.createClass({
     getInitialState:function() {

@@ -9,7 +9,7 @@ module.exports = React.createClass({
         </div>
         <div className="sidebar-button-menu">
           <div className="menu-item">我的清单</div>
-          <div className="menu-item">将任务发送到邮箱</div>
+          <div className="menu-item">个人设置</div>
         </div>
       </div>
 
