@@ -1,6 +1,7 @@
 let React = require('react');
 let Siderbar = require('../sidebar.js');
 let Register = require('./register.js');
+let Login = require('./login.js');
 
 module.exports = React.createClass({
   render: function (){
@@ -10,7 +11,7 @@ module.exports = React.createClass({
         <Siderbar />
 
         <div className="userWrap">
-          <Register />
+          <Login />
         </div>
 
       </div>
