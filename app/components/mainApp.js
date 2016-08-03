@@ -1,7 +1,8 @@
-var React = require('react');
-var TodoForm = require('./todoForm.js');
-var TodoList = require('./todoList.js');
-var Siderbar = require('./sidebar');
+let React = require('react');
+let TodoForm = require('./todoForm.js');
+let TodoList = require('./todoList.js');
+let Siderbar = require('./sidebar');
+let User = require('./login/user.js');
 
 
 module.exports = React.createClass({
@@ -10,8 +11,18 @@ module.exports = React.createClass({
         {text:'学习React啊啊啊啊啊'}
       ];
 
+      var todoDisplayObj = {
+        display : 'block'
+      };
+
+      var loginDisplayObj = {
+        display : 'none'
+      };
+
       return {
-        todoList : todoList
+        todoList : todoList,
+        todoDisplayObj : todoDisplayObj,
+        loginDisplayObj : loginDisplayObj
       }
     },
     submitNewTodo : function(todo) {
@@ -27,22 +38,38 @@ module.exports = React.createClass({
         todoList: this.state.todoList
       });
     },
+    showLogin : function () {
+      var tempTodoObj = { display : 'none'};
+      var tempLoginObj = { display : 'block' };
+      this.setState({
+        todoDisplayObj : tempTodoObj,
+        loginDisplayObj : tempLoginObj
+      })
+    },
     render: function () {
         return (
           <div>
 
-            <Siderbar />
+            <Siderbar showLogin={this.showLogin} />
 
             <div className="content">
-              <div className="todo-head">
-                <p className="todo-title">TODO</p>
-                <TodoForm todoList = {this.state.todoList}
-                          submitNewTodo = {this.submitNewTodo} />
+              <div style={this.state.todoDisplayObj}>
+                <div className="todo-head">
+                  <p className="todo-title">TODO</p>
+                  <TodoForm todoList = {this.state.todoList}
+                            submitNewTodo = {this.submitNewTodo} />
+                </div>
+                <div className="todo-foot">
+                  <TodoList todoList={this.state.todoList}
+                            delTodo = {this.delTodo} />
+                 </div>
               </div>
-              <div className="todo-foot">
-                <TodoList todoList={this.state.todoList}
-                          delTodo = {this.delTodo} />
-               </div>
+
+              <div style={this.state.loginDisplayObj}>
+                <User />
+              </div>
+
+
             </div>
 
           </div>

@@ -1,6 +1,9 @@
 let React = require('react');
 
 module.exports = React.createClass({
+  submitLogin : function () {
+
+  },
   render: function (){
     return (
       <div>
@@ -20,8 +23,8 @@ module.exports = React.createClass({
 
           <div className="form-group">
            <div className="col-sm-offset-2 col-sm-10">
-             <button type="submit" id="btn_login" className="btn btn-default">登录</button>
-             <button type="submit" id="btn_newReg" className="btn btn-default mgl2">注册</button>
+             <button type="submit" id="btn_login" className="btn btn-default" onClick={this.submitLogin}>登录</button>
+             <button type="submit" id="btn_newReg" className="btn btn-default mgl2" onClick={this.props.loginToggle}>注册</button>
            </div>
          </div>
         </form>

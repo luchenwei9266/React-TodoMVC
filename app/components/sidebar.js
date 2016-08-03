@@ -1,11 +1,13 @@
 var React = require('react');
+let user = require('./login/user.js');
+import { Link } from 'react-router';
 
 module.exports = React.createClass({
   render : function () {
     return (
       <div className="sidebar">
         <div className="sidebar-button-login">
-          <button className="btn btn-success btn-lg sidebar-button">登录/注册</button>
+            <button className="btn btn-success btn-lg sidebar-button" onClick={this.props.showLogin}>登录/注册</button>
         </div>
         <div className="sidebar-button-menu">
           <div className="menu-item">我的清单</div>

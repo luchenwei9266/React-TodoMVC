@@ -1,10 +1,14 @@
 let React = require('react');
 let AV = require('leancloud-storage');
 let ReactDOM = require('react-dom');
-// let AppComponent = require('./components/router/leanTouter.js');
 
-// let AppComponent = require('./components/mainApp.js');
-let AppComponent = require('./components/login/user.js');
+let AppComponent = require('./components/mainApp.js');
+let user = require('./components/login/user.js');
+let register = require('./components/login/register.js');
+let login = require('./components/login/login.js');
+
+import { Router, Route, Link , hashHistory , IndexRoute , Redirect} from 'react-router'
+
 
 require("!style!css!./../node_modules/bootstrap/dist/css/bootstrap.min.css");
 require("!style!css!./../node_modules/bootstrap/dist/css/bootstrap-theme.min.css");
@@ -23,4 +27,12 @@ AV.init({
 });
 
 
-ReactDOM.render(<AppComponent />, document.getElementById('content'));
+ReactDOM.render(
+          <Router history={hashHistory}>
+            <Route path="/" component={AppComponent}>
+              <Route path="user" component={user}>
+                <Route path="login" component={login}></Route>
+                <Route path="inbox" component={register}></Route>
+              </Route>
+            </Route>
+          </Router>, document.getElementById('content'));
