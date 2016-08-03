@@ -22,6 +22,15 @@ module.exports = React.createClass({
       regDisplayObj : tempRegObj
     })
   },
+  regToggle : function () {
+    var tempLoginObj = { display : 'block'};
+    var tempRegObj = { display : 'none' };
+
+    this.setState({
+      loginDisplayObj : tempLoginObj,
+      regDisplayObj : tempRegObj
+    })
+  },
   render: function (){
     return (
       <div>
@@ -30,7 +39,7 @@ module.exports = React.createClass({
             <Login loginToggle={this.loginToggle}/>
           </div>
           <div style={this.state.regDisplayObj}>
-            <Register />
+            <Register regToggle={this.regToggle}/>
           </div>
         </div>
       </div>
