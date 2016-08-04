@@ -1,8 +1,19 @@
 let React = require('react');
+let AV = require('leancloud-storage');
 
 module.exports = React.createClass({
   submitLogin : function () {
+    var userName = $('#loginInputEmail').val();
+    var userPassword = $('#loginInputPassword').val();
+    var component = this;
 
+    AV.User.logIn(userName, userPassword).then(function (loginedUser) {
+      component.props.showTodo();
+      $('#loginInputEmail').val('');
+      $('#loginInputPassword').val('');
+    }, function (error) {
+      alert("账户名或者密码错误，请重新输入!");
+    });
   },
   render: function (){
     return (
@@ -11,7 +22,7 @@ module.exports = React.createClass({
           <div className="form-group">
             <label htmlFor="loginInputEmail" className="col-sm-2 control-label">账号</label>
             <div className="col-sm-10">
-              <input type="email" className="form-control" id="loginInputEmail" placeholder="请输入您的用户名"/>
+              <input type="text" className="form-control" id="loginInputEmail" placeholder="请输入您的用户名"/>
             </div>
           </div>
           <div className="form-group">
@@ -25,6 +36,7 @@ module.exports = React.createClass({
            <div className="col-sm-offset-2 col-sm-10">
              <button type="submit" id="btn_login" className="btn btn-default" onClick={this.submitLogin}>登录</button>
              <button type="submit" id="btn_newReg" className="btn btn-default mgl2" onClick={this.props.loginToggle}>注册</button>
+             <button type="submit" id="btn_newReg" className="btn btn-default mgl2" onClick={this.props.showTodo}>关闭</button>
            </div>
          </div>
         </form>

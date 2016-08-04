@@ -21,11 +21,9 @@ module.exports = React.createClass({
     }
 
     var user = new AV.User();
-
     user.setUsername(userName);
     user.setPassword(userPassword);
     user.setEmail(userEmail);
-
     user.signUp().then(function (loginedUser) {
         alert('注册成功!');
         setTimeout(function(){

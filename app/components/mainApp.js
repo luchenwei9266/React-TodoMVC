@@ -46,6 +46,14 @@ module.exports = React.createClass({
         loginDisplayObj : tempLoginObj
       })
     },
+    showTodo : function () {
+      var tempTodoObj = { display : 'block'};
+      var tempLoginObj = { display : 'none' };
+      this.setState({
+        todoDisplayObj : tempTodoObj,
+        loginDisplayObj : tempLoginObj
+      })
+    },
     render: function () {
         return (
           <div>
@@ -66,7 +74,7 @@ module.exports = React.createClass({
               </div>
 
               <div style={this.state.loginDisplayObj}>
-                <User />
+                <User showTodo={this.showTodo}/>
               </div>
 
 

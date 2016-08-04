@@ -36,7 +36,8 @@ module.exports = React.createClass({
       <div>
         <div className="userWrap">
           <div style={this.state.loginDisplayObj}>
-            <Login loginToggle={this.loginToggle}/>
+            <Login loginToggle={this.loginToggle}
+                   showTodo={this.props.showTodo}/>
           </div>
           <div style={this.state.regDisplayObj}>
             <Register regToggle={this.regToggle}/>
