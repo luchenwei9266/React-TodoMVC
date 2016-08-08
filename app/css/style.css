@@ -28,6 +28,10 @@ ul,li{
   margin-top: 0.03rem;
 }
 
+.mgl02 {
+  margin-left: 0.05rem;
+}
+
 .todo-item-wrap {
   height: 4rem;
   border: 1px solid rgba(47, 50, 51, 0.28);

@@ -31,13 +31,17 @@ module.exports = React.createClass({
       regDisplayObj : tempRegObj
     })
   },
+  saveUserId : function(loginedUser) {
+    this.props.saveUserId(loginedUser);
+  },
   render: function (){
     return (
       <div>
         <div className="userWrap">
           <div style={this.state.loginDisplayObj}>
-            <Login loginToggle={this.loginToggle}
-                   showTodo={this.props.showTodo}/>
+            <Login loginToggle = {this.loginToggle}
+                   showTodo = {this.props.showTodo}
+                   saveUserId = {this.saveUserId}/>
           </div>
           <div style={this.state.regDisplayObj}>
             <Register regToggle={this.regToggle}/>

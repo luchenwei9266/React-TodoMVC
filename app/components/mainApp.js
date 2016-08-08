@@ -3,7 +3,7 @@ let TodoForm = require('./todoForm.js');
 let TodoList = require('./todoList.js');
 let Siderbar = require('./sidebar');
 let User = require('./login/user.js');
-
+let USERID = '';
 
 module.exports = React.createClass({
     getInitialState:function() {
@@ -54,6 +54,18 @@ module.exports = React.createClass({
         loginDisplayObj : tempLoginObj
       })
     },
+    saveUserId : function (saveUserId) {
+      USERID = saveUserId.id;
+    },
+    upload : function () {
+      var component = this;
+      var currentUser = AV.User.current();
+      if (currentUser) {
+
+      } else {
+
+      }
+    },
     render: function () {
         return (
           <div>
@@ -69,12 +81,14 @@ module.exports = React.createClass({
                 </div>
                 <div className="todo-foot">
                   <TodoList todoList={this.state.todoList}
-                            delTodo = {this.delTodo} />
+                            delTodo = {this.delTodo}
+                            upload = {this.upload}  />
                  </div>
               </div>
 
               <div style={this.state.loginDisplayObj}>
-                <User showTodo={this.showTodo}/>
+                <User showTodo = {this.showTodo}
+                      saveUserId = {this.saveUserId}/>
               </div>
 
 

@@ -2,7 +2,7 @@ var React = require('react');
 var AV = require('leancloud-storage');
 
 module.exports = React.createClass({
-  submitText:function(e){
+  submitText : function (e) {
     e.preventDefault();
     var tempValue = this.refs.todoText.value;
     if (tempValue.length <= 0) {
@@ -19,24 +19,23 @@ module.exports = React.createClass({
     this.refs.todoText.value = '';
     this.props.submitNewTodo(newObj);
 
-    // 测试leancloud
-    var TestObject = AV.Object.extend('TestObject');
-    var testObject = new TestObject();
-    testObject.save({
-      words: 'Hello World!'
-    }).then(function(object) {
-      alert('LeanCloud Rocks!');
-    })
   },
-  render:function(){
+  render : function () {
     return(
       <div className="container-fluid">
         <div className="row">
-          <div className="col-md-10 col-sm-10 col-xs-10">
+          <div className="col-md-9 col-sm-9 col-xs-9">
             <input ref="todoText" className="form-control todo-input" type="text"/>
           </div>
-          <div className="col-md-2 col-sm-2 col-xs-2">
-            <button className="btn btn-primary btn-submit" onClick={this.submitText}>Submit</button>
+          <div className="col-md-3 col-sm-3 col-xs-3">
+            <form className="form-inline">
+              <div className="form-group">
+                <button className="btn btn-primary btn-submit" onClick={this.submitText}>添加</button>
+              </div>
+              <div className="form-group">
+                <button className="btn btn-primary btn-submit mgl02" onClick={this.props.upload}>同步</button>
+              </div>
+            </form>
           </div>
         </div>
       </div>
