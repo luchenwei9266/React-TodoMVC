@@ -3,6 +3,8 @@ let TodoForm = require('./todoForm.js');
 let TodoList = require('./todoList.js');
 let Siderbar = require('./sidebar');
 let User = require('./login/user.js');
+let AV = require('leancloud-storage');
+let USEROBJID = '';
 let USERID = '';
 
 module.exports = React.createClass({
@@ -45,6 +47,7 @@ module.exports = React.createClass({
         todoDisplayObj : tempTodoObj,
         loginDisplayObj : tempLoginObj
       })
+
     },
     showTodo : function () {
       var tempTodoObj = { display : 'block'};
@@ -55,15 +58,32 @@ module.exports = React.createClass({
       })
     },
     saveUserId : function (saveUserId) {
-      USERID = saveUserId.id;
+      USEROBJID = saveUserId.id;
+      USERID = saveUserId.attributes.user_id;
     },
     upload : function () {
-      var component = this;
-      var currentUser = AV.User.current();
+      console.log(111);
+
       if (currentUser) {
+        // 如果用户已登录
+        var component = this;
+        var currentUser = AV.User.current();
 
+        var query = AV.Object.extend('TodoList');
+
+        var todoItem = new query();
+
+        todoItem.set('user_id',USERID);
+        todoItem.set('text',"你好");
+        todoItem.set('doneTodoNum',"-1");
+
+        todoItem.save().then(function(todo){
+          console.log(todo);
+        },function(error){
+
+        })
       } else {
-
+        // 如果用户未登录
       }
     },
     render: function () {
@@ -77,12 +97,13 @@ module.exports = React.createClass({
                 <div className="todo-head">
                   <p className="todo-title">TODO</p>
                   <TodoForm todoList = {this.state.todoList}
-                            submitNewTodo = {this.submitNewTodo} />
+                            submitNewTodo = {this.submitNewTodo}
+                            upload = {this.upload} />
                 </div>
                 <div className="todo-foot">
                   <TodoList todoList={this.state.todoList}
                             delTodo = {this.delTodo}
-                            upload = {this.upload}  />
+                              />
                  </div>
               </div>
 
