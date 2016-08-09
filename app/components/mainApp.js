@@ -6,6 +6,7 @@ let User = require('./login/user.js');
 let AV = require('leancloud-storage');
 let USEROBJID = '';
 let USERID = '';
+let USERNAME = '';
 
 module.exports = React.createClass({
     getInitialState:function() {
@@ -21,10 +22,20 @@ module.exports = React.createClass({
         display : 'none'
       };
 
+      var loginedObj = {
+        display : 'none'
+      };
+
+      var loginBtnHideObj = {
+        display : 'block'
+      }
+
       return {
         todoList : todoList,
         todoDisplayObj : todoDisplayObj,
-        loginDisplayObj : loginDisplayObj
+        loginDisplayObj : loginDisplayObj,
+        loginedObj : loginedObj,
+        loginBtnHideObj : loginBtnHideObj
       }
     },
     submitNewTodo : function(todo) {
@@ -58,39 +69,66 @@ module.exports = React.createClass({
       })
     },
     saveUserId : function (saveUserId) {
+      console.log(saveUserId);
       USEROBJID = saveUserId.id;
       USERID = saveUserId.attributes.user_id;
+      USERNAME = saveUserId.attributes.username;
     },
     upload : function () {
-      console.log(111);
-
-      if (currentUser) {
+      if (USERID.length != 0) {
         // 如果用户已登录
         var component = this;
-        var currentUser = AV.User.current();
 
         var query = AV.Object.extend('TodoList');
 
         var todoItem = new query();
-
+        // TODO
         todoItem.set('user_id',USERID);
         todoItem.set('text',"你好");
         todoItem.set('doneTodoNum',"-1");
 
         todoItem.save().then(function(todo){
-          console.log(todo);
         },function(error){
 
         })
       } else {
         // 如果用户未登录
+        alert('您还没有登录，请注册登陆后再进行同步操作!');
       }
+    },
+    logined : function () {
+      var tempLoginedObj = { display : 'block'};
+      var tempLoginBtnHideObj = { display : 'none' };
+      this.setState({
+        loginedObj : tempLoginedObj,
+        loginBtnHideObj : tempLoginBtnHideObj
+      })
+    },
+    logout : function () {
+      AV.User.logOut();
+      var currentUser = AV.User.current();
+      USEROBJID = '';
+      USERID = '';
+      USERNAME = '';
+
+      var tempLoginedObj = { display : 'none'};
+      var tempLoginBtnHideObj = { display : 'block' };
+      this.setState({
+        loginedObj : tempLoginedObj,
+        loginBtnHideObj : tempLoginBtnHideObj
+      });
+
+      this.showTodo();
     },
     render: function () {
         return (
           <div>
 
-            <Siderbar showLogin={this.showLogin} />
+            <Siderbar showLogin = {this.showLogin}
+                      loginedObj = {this.state.loginedObj}
+                      loginBtnHideObj = {this.state.loginBtnHideObj}
+                      USERNAME = {USERNAME}
+                      logout = {this.logout}/>
 
             <div className="content">
               <div style={this.state.todoDisplayObj}>
@@ -109,7 +147,8 @@ module.exports = React.createClass({
 
               <div style={this.state.loginDisplayObj}>
                 <User showTodo = {this.showTodo}
-                      saveUserId = {this.saveUserId}/>
+                      saveUserId = {this.saveUserId}
+                      logined = {this.logined}/>
               </div>
 
 

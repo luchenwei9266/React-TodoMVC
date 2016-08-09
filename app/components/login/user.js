@@ -34,6 +34,9 @@ module.exports = React.createClass({
   saveUserId : function(loginedUser) {
     this.props.saveUserId(loginedUser);
   },
+  logined : function () {
+    this.props.logined();
+  },
   render: function (){
     return (
       <div>
@@ -41,7 +44,8 @@ module.exports = React.createClass({
           <div style={this.state.loginDisplayObj}>
             <Login loginToggle = {this.loginToggle}
                    showTodo = {this.props.showTodo}
-                   saveUserId = {this.saveUserId}/>
+                   saveUserId = {this.saveUserId}
+                   logined = {this.logined}/>
           </div>
           <div style={this.state.regDisplayObj}>
             <Register regToggle={this.regToggle}/>

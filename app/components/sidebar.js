@@ -7,11 +7,16 @@ module.exports = React.createClass({
     return (
       <div className="sidebar">
         <div className="sidebar-button-login">
-            <button className="btn btn-success btn-lg sidebar-button" onClick={this.props.showLogin}>登录/注册</button>
+            <button className="btn btn-success btn-lg sidebar-button"
+              onClick = {this.props.showLogin}
+              style = {this.props.loginBtnHideObj}>
+              登录/注册
+            </button>
         </div>
-        <div className="sidebar-button-menu">
-          <div className="menu-item">我的清单</div>
-          <div className="menu-item">个人设置</div>
+        <div className="sidebar-button-menu" style={this.props.loginedObj}>
+          <p className = "user-title">欢迎您:</p>
+          <p className = "user-name">{this.props.USERNAME}</p>
+          <div onClick = {this.props.logout} className = "menu-item">退出</div>
         </div>
       </div>
 

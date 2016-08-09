@@ -93,6 +93,7 @@ ul,li{
   width: 100%;
   text-align: center;
   padding: 0.2rem;
+  margin-top: 6rem;
 }
 
 .sidebar-button-menu {
@@ -110,6 +111,18 @@ ul,li{
 
 .sidebar-button-menu div:first-child {
   margin-top: 1rem;
+}
+
+.user-name {
+  color: rgb(232, 129, 92);
+  text-align: center;
+  font-size: 0.25rem;
+}
+
+.user-title {
+  color: rgb(47, 241, 66);
+  text-align: center;
+  font-size: 0.3rem;
 }
 
 /*****************************  login *******************************/

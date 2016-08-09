@@ -10,6 +10,7 @@ module.exports = React.createClass({
     AV.User.logIn(userName, userPassword).then(function (loginedUser) {
       component.props.showTodo();
       component.props.saveUserId(loginedUser);
+      component.props.logined();
       $('#loginInputEmail').val('');
       $('#loginInputPassword').val('');
     }, function (error) {
