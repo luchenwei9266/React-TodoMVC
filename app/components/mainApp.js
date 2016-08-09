@@ -11,7 +11,7 @@ let USERNAME = '';
 module.exports = React.createClass({
     getInitialState:function() {
       var todoList = [
-        {text:'学习React啊啊啊啊啊'}
+        {text:'1学习React啊啊啊啊啊'},
       ];
 
       var todoDisplayObj = {
@@ -77,20 +77,21 @@ module.exports = React.createClass({
     upload : function () {
       if (USERID.length != 0) {
         // 如果用户已登录
-        var component = this;
+        var tempTodoList = this.state.todoList;
+        var tempList = [];
 
-        var query = AV.Object.extend('TodoList');
+        for (var i = 0; i < tempTodoList.length; i++) {
+          var todoItem = {};
+          todoItem.user_id = USERID;
+          todoItem.text = tempTodoList[i].text;
+          todoItem.doneTodoNum = -1;
+          tempList.push(todoItem);
+        }
 
-        var todoItem = new query();
-        // TODO
-        todoItem.set('user_id',USERID);
-        todoItem.set('text',"你好");
-        todoItem.set('doneTodoNum',"-1");
+        var todo = AV.Object.createWithoutData('_User',USEROBJID);
+        todo.set('todoList',tempList);
+        todo.save();
 
-        todoItem.save().then(function(todo){
-        },function(error){
-
-        })
       } else {
         // 如果用户未登录
         alert('您还没有登录，请注册登陆后再进行同步操作!');
