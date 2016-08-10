@@ -10,9 +10,7 @@ let USERNAME = '';
 
 module.exports = React.createClass({
     getInitialState:function() {
-      var todoList = [
-        {text:'1学习React啊啊啊啊啊'},
-      ];
+      var todoList = [];
 
       var todoDisplayObj = {
         display : 'block'
@@ -73,6 +71,11 @@ module.exports = React.createClass({
       USEROBJID = saveUserId.id;
       USERID = saveUserId.attributes.user_id;
       USERNAME = saveUserId.attributes.username;
+      var tempTodoList = saveUserId.attributes.todoList;
+
+      this.setState({
+        todoList : tempTodoList
+      })
     },
     upload : function () {
       if (USERID.length != 0) {
@@ -103,7 +106,7 @@ module.exports = React.createClass({
       this.setState({
         loginedObj : tempLoginedObj,
         loginBtnHideObj : tempLoginBtnHideObj
-      })
+      });
     },
     logout : function () {
       AV.User.logOut();
