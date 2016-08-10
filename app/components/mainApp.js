@@ -114,6 +114,11 @@ module.exports = React.createClass({
       USEROBJID = '';
       USERID = '';
       USERNAME = '';
+      var tempTodoList = [];
+
+      this.setState({
+        todoList : tempTodoList
+      })
 
       var tempLoginedObj = { display : 'none'};
       var tempLoginBtnHideObj = { display : 'block' };
