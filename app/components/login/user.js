@@ -1,5 +1,5 @@
 let React = require('react');
-let Siderbar = require('../sidebar.js');
+let Siderbar = require('../todoFolder/sidebar.js');
 let Register = require('./register.js');
 let Login = require('./login.js');
 

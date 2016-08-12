@@ -2,7 +2,8 @@ let React = require('react');
 let AV = require('leancloud-storage');
 let ReactDOM = require('react-dom');
 
-let AppComponent = require('./components/mainApp.js');
+let App = require('./components/mainApp.js');
+// let App = require('./components/router/leanTouter.js');
 let user = require('./components/login/user.js');
 let register = require('./components/login/register.js');
 let login = require('./components/login/login.js');
@@ -13,6 +14,7 @@ import { Router, Route, Link , hashHistory , IndexRoute , Redirect} from 'react-
 require("!style!css!./../node_modules/bootstrap/dist/css/bootstrap.min.css");
 require("!style!css!./../node_modules/bootstrap/dist/css/bootstrap-theme.min.css");
 require("!style!css!./css/style.css");
+
 
 // 应用 ID，用来识别应用
 var APP_ID = 'SCl6MLrSURtoom0Va25nUXGj-gzGzoHsz';
@@ -27,12 +29,4 @@ AV.init({
 });
 
 
-ReactDOM.render(
-          <Router history={hashHistory}>
-            <Route path="/" component={AppComponent}>
-              <Route path="user" component={user}>
-                <Route path="login" component={login}></Route>
-                <Route path="inbox" component={register}></Route>
-              </Route>
-            </Route>
-          </Router>, document.getElementById('content'));
+ReactDOM.render(<App />, document.getElementById('content'));

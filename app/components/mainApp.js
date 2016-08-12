@@ -1,12 +1,15 @@
 let React = require('react');
-let TodoForm = require('./todoForm.js');
-let TodoList = require('./todoList.js');
-let Siderbar = require('./sidebar');
+let TodoForm = require('./todoFolder/todoForm.js');
+let TodoList = require('./todoFolder/todoList.js');
+let Siderbar = require('./todoFolder/sidebar');
 let User = require('./login/user.js');
 let AV = require('leancloud-storage');
 let USEROBJID = '';
 let USERID = '';
 let USERNAME = '';
+
+import { Router, Route, Link , hashHistory , IndexRoute , Redirect} from 'react-router'
+
 
 module.exports = React.createClass({
     getInitialState:function() {
@@ -56,7 +59,6 @@ module.exports = React.createClass({
         todoDisplayObj : tempTodoObj,
         loginDisplayObj : tempLoginObj
       })
-
     },
     showTodo : function () {
       var tempTodoObj = { display : 'block'};
@@ -133,11 +135,11 @@ module.exports = React.createClass({
         return (
           <div>
 
-            <Siderbar showLogin = {this.showLogin}
-                      loginedObj = {this.state.loginedObj}
-                      loginBtnHideObj = {this.state.loginBtnHideObj}
-                      USERNAME = {USERNAME}
-                      logout = {this.logout}/>
+              <Siderbar showLogin = {this.showLogin}
+                        loginedObj = {this.state.loginedObj}
+                        loginBtnHideObj = {this.state.loginBtnHideObj}
+                        USERNAME = {USERNAME}
+                        logout = {this.logout}/>
 
             <div className="content">
               <div style={this.state.todoDisplayObj}>

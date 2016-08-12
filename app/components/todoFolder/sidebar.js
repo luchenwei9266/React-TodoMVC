@@ -1,5 +1,5 @@
 var React = require('react');
-let user = require('./login/user.js');
+let user = require('../login/user.js');
 import { Link } from 'react-router';
 
 module.exports = React.createClass({
